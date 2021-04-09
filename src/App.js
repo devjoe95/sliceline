@@ -1,6 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import Navbar from "./Navbar";
+import Banner from "./components/Banner";
+import Navbar from "./components/Navbar";
 import { bodyColor } from "./styles/colors";
 
 const GlobalStyle = createGlobalStyle`
@@ -19,6 +20,7 @@ function App() {
     <React.Fragment>
       <GlobalStyle />
       <Navbar />
+      <Banner />
     </React.Fragment>
   );
 }
