@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const BannerStyled = styled.div`
@@ -7,17 +6,17 @@ const BannerStyled = styled.div`
   background: url("images/banner.jpg");
   background-position: center;
   background-size:cover;
+  filter:contrast(80%);
+  display:flex;
+  justify-content:center;
+  align-items:center
 `;
-const Banner = props => {
+const Banner = () => {
     return (
-        <BannerStyled>
-            
-        </BannerStyled>
-    )
-}
-
-Banner.propTypes = {
-
+      <BannerStyled>
+        <h1 style={{ color: "white" }}>Live 😃 . Love 💕 . Eat 🍔</h1>
+      </BannerStyled>
+    );
 }
 
 export default Banner
