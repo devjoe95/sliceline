@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import Banner from "./components/Banner";
+import FoodDialog from "./components/FoodDialog";
 import Menu from "./components/Menu";
 import Navbar from "./components/Navbar";
 import { bodyColor } from "./styles/colors";
@@ -17,12 +18,18 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 function App() {
+  const [openFoodDialog, setOpenFoodDialog] = useState(null);
+
   return (
     <React.Fragment>
+      <FoodDialog
+        openFoodDialog={openFoodDialog}
+        setOpenFoodDialog={setOpenFoodDialog}
+      />
       <GlobalStyle />
       <Navbar />
       <Banner />
-      <Menu />
+      <Menu setOpenFoodDialog={setOpenFoodDialog} />
     </React.Fragment>
   );
 }

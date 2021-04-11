@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { foods } from "../data";
 import FoodItem from "./FoodItem";
@@ -14,16 +15,24 @@ const FoodGridStyled = styled.div`
   gap: 20px;
 `;
 
-const Menu = (props) => {
+const Menu = ({ setOpenFoodDialog }) => {
   return (
     <MenuStyled>
       <FoodGridStyled>
         {foods.map((item, index) => (
-          <FoodItem key={index} item={item} />
+          <FoodItem
+            key={index}
+            item={item}
+            setOpenFoodDialog={setOpenFoodDialog}
+          />
         ))}
       </FoodGridStyled>
     </MenuStyled>
   );
+};
+
+Menu.propTypes = {
+  setOpenFood: PropTypes.func,
 };
 
 export default Menu;

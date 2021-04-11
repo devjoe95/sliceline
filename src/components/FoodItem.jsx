@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 import "../styles/FoodItem.css";
 
-const FoodItem = ({ item }) => {
+const FoodItem = ({ item, setOpenFoodDialog }) => {
   const { name, img, category } = item;
   return (
-    <div className="food">
+    <div className="food" onClick={() => setOpenFoodDialog(item)}>
       <img src={img} alt={name} />
       <h3>{name}</h3>
       <p>{category}</p>
@@ -15,8 +15,8 @@ const FoodItem = ({ item }) => {
 };
 
 FoodItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  img: PropTypes.string,
   category: PropTypes.string,
 };
 
