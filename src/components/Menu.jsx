@@ -6,7 +6,6 @@ import FoodItem from "./FoodItem";
 
 const MenuStyled = styled.div`
   min-height: 200px;
-  margin: 50px 400px 50px 20px;
 `;
 
 const FoodGridStyled = styled.div`
