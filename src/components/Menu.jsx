@@ -1,37 +1,22 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { foods } from "../data";
+import React, {useContext} from "react";
 import FoodItem from "./FoodItem";
+import {Row} from "react-bootstrap";
+import {AppContext} from "../App";
 
-const MenuStyled = styled.div`
-  min-height: 200px;
-`;
-
-const FoodGridStyled = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-`;
-
-const Menu = ({ setOpenFoodDialog }) => {
-  return (
-    <MenuStyled>
-      <FoodGridStyled>
-        {foods.map((item, index) => (
-          <FoodItem
-            key={index}
-            item={item}
-            setOpenFoodDialog={setOpenFoodDialog}
-          />
-        ))}
-      </FoodGridStyled>
-    </MenuStyled>
-  );
-};
-
-Menu.propTypes = {
-  setOpenFood: PropTypes.func,
+const Menu = () => {
+    const context = useContext(AppContext)
+    return (
+            <div className="my-5">
+                <Row>
+                    {context.state.menu.map((item, index) => (
+                        <FoodItem
+                            key={index}
+                            item={item}
+                        />
+                    ))}
+                </Row>
+            </div>
+    );
 };
 
 export default Menu;

@@ -13,5 +13,4 @@ img {
   height: 150px;
   filter: contrast(70%);
   transition: all 0.2s ease-in-out;
-  border-radius: 5px;
 }

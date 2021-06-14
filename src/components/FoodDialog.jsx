@@ -1,64 +1,111 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { pizzaLight } from "../styles/colors";
-import { BtnStyled } from "../styles/BtnStyled";
+import React, {useContext, useEffect, useState} from "react";
+import {Button, Col, FormControl, InputGroup, ListGroup, Modal, Row} from "react-bootstrap";
+import {AppContext} from "../App";
+import {pizzaRed} from "../styles/colors";
 
-const FoodDialogStyled = styled.div`
-  text-align: center;
-  width: 500px;
-  top: 0;
-  background-color: ${pizzaLight};
-  z-index: 1001;
+const FoodDialog = ({
+                        item,
+                        show,
+                        handleClose
+                    }) => {
+    const context = useContext(AppContext)
+    const [quantity, setQuantity] = useState(1);
+    useEffect(() => {
+        if (item) {
+            if (context.state.orders.length === 0) {
+                document.title = `${item.name} | Sliceline`;
+            } else {
+                document.title = `(${context.state.orders.length}) ${item.name} | Sliceline`;
+            }
+        } else {
+            document.title = "Sliceline";
+        }
+    }, [item, context.state.orders]);
+    if (!item) return null;
+    const order = {
+        ...item,
+        count: quantity,
+    };
 
-  padding: 10px;
-  border-radius: 5px;
-  &::
-  ms-overflow-style: none;
-  position: relative;
-`;
+    function addToBucket() {
+        const selectedOrder = context.state.orders.find((res) => res.name === order.name);
+        if (selectedOrder) {
+            const clonedOrders = context.state.orders.filter((res) =>
+                res.name === order.name ? (res.count += quantity) : res.count
+            );
+            context.setState({...context.state, orders: clonedOrders})
+        } else {
+            context.setState({...context.state, orders: [...context.state.orders, order]});
+        }
+        setQuantity(1)
+    }
 
-const OverlayStyled = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  transition: all 0.2s ease-in-out;
-  z-index: 1000;
-`;
+    return (
+        <>
+            <Modal show={show} onHide={handleClose}
+                   aria-labelledby="contained-modal-title-vcenter"
+                   centered>
+                <Modal.Header className="p-0 overflow-hidden">
+                    <img src={item.img} alt={item.name}/>
+                </Modal.Header>
+                <Modal.Title className="text-center mt-3">{item.name}</Modal.Title>
+                <Modal.Body>
+                    <ListGroup>
+                        <ListGroup.Item>Category: {item.category}</ListGroup.Item>
+                        <ListGroup.Item>
+                            <Row>
+                                <Col>Quantity: </Col>
+                                <Col><InputGroup className="mb-3">
+                                    <InputGroup.Prepend>
+                                        <Button style={{backgroundColor: pizzaRed, borderColor: pizzaRed}}
+                                                onClick={() => {
+                                                    if (quantity > 1) {
+                                                        setQuantity(quantity - 1);
+                                                    }
+                                                }}>-</Button> </InputGroup.Prepend>
+                                    <FormControl
+                                        className="text-center"
+                                        placeholder={quantity}
+                                        aria-label="Recipient's username"
+                                        aria-describedby="basic-addon2"
+                                        disabled/>
+                                    <InputGroup.Append>
+                                        <Button style={{backgroundColor: pizzaRed, borderColor: pizzaRed}}
+                                                onClick={() => {
+                                                    if (quantity < 10) {
+                                                        setQuantity(quantity + 1);
+                                                    }
+                                                }}>+</Button> </InputGroup.Append>
+                                </InputGroup>
+                                </Col>
+                            </Row>
+                        </ListGroup.Item>
+                        <ListGroup.Item>Price: {item.price.toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "EGP",
+                        })}</ListGroup.Item>
+                    </ListGroup>
+                </Modal.Body>
 
-const FoodDialog = ({ openFoodDialog, setOpenFoodDialog }) => {
-  return openFoodDialog ? (
-    <>
-      <OverlayStyled onClick={() => setOpenFoodDialog()}>
-        <FoodDialogStyled>
-          <img src={openFoodDialog.img} alt={openFoodDialog.name} />
-          <div
-            style={{
-              margin: "10px 0",
-              minHeight: "100px",
-              maxHeight: "calc(100% - 200px)",
-              overflowY: "auto",
-              scrollbarWidth: "none",
-            }}
-          >
-            <h2>{openFoodDialog.name}</h2>
-            <p>{openFoodDialog.category}</p>
-          </div>
-          <BtnStyled>Add Item To Bucket</BtnStyled>
-        </FoodDialogStyled>
-      </OverlayStyled>
-    </>
-  ) : null;
-};
 
-FoodDialog.propTypes = {
-  openFoodDialog: PropTypes.object,
-  setOpenFoodDialog: PropTypes.func,
+                <Modal.Footer>
+                    <Button style={{borderColor: pizzaRed, color: pizzaRed}} variant="outline-danger"
+                            onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button style={{backgroundColor: pizzaRed, borderColor: pizzaRed}} onClick={() => {
+                        addToBucket();
+                        handleClose()
+                    }}>
+                        Buy{" "}
+                        {(item.price * quantity).toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "EGP",
+                        })}
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>)
 };
 
 export default FoodDialog;
