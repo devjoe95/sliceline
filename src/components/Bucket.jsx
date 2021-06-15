@@ -1,11 +1,12 @@
-import React, {useContext, useEffect, useMemo} from "react";
+import React, {useContext, useEffect, useMemo, useState} from "react";
 import {pizzaRed} from "../styles/colors";
 import OrderItem from "./OrderItem";
 import {AppContext} from "../App";
-import {Button} from "react-bootstrap";
+import {Button, ButtonGroup} from "react-bootstrap";
 
 const Bucket = () => {
     const context = useContext(AppContext)
+    const [tax, setTax] = useState(14 / 100)
     const totalPrize = useMemo(() => {
         if (context.state.orders.length !== 0) {
             return context.state.orders.reduce((acc, val) => (acc + val.count * val.price), 0)
@@ -14,7 +15,6 @@ const Bucket = () => {
         }
     }, [context.state.orders])
     useEffect(() => {
-        console.log(context.state.orders)
         document.title = `(${context.state.orders.length}) ${document.title}`;
     }, [context.state.orders]);
     return (
@@ -24,8 +24,8 @@ const Bucket = () => {
                 <p style={{textAlign: "center"}}>Bucket is empty.</p>
             ) : (
                 context.state.orders.map((order, index) => (
-                    <React.Fragment>
-                        <OrderItem key={index} orderItem={order}/>
+                    <React.Fragment key={index}>
+                        <OrderItem orderItem={order}/>
                         {context.state.orders.length - 1 === index ? (
                             <br/>
                         ) : (
@@ -34,14 +34,22 @@ const Bucket = () => {
                     </React.Fragment>
                 ))
             )}
-            <Button style={{backgroundColor: pizzaRed, borderColor: pizzaRed}}>
-                Checkout
-                {totalPrize !== 0 &&
-                ` (${totalPrize.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "EGP",
-                })})`}
-            </Button>
+            <p className="text-muted text-center">
+                Adding a {Math.floor(tax * 100)}% TAX.
+            </p>
+            <ButtonGroup aria-label="Bucket Control">
+                <Button style={{backgroundColor: pizzaRed, borderColor: pizzaRed}}>Checkout
+                    {totalPrize !== 0 &&
+                    ` (${(totalPrize + totalPrize * tax).toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "EGP",
+                    })})`}</Button>
+                <Button variant="outline-danger"
+                        onClick={() => {
+                            context.setState({...context.state, orders: []})
+                            localStorage.removeItem('bucket')
+                        }}>Reset</Button>
+            </ButtonGroup>
         </div>
     );
 };

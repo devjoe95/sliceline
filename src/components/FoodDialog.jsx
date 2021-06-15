@@ -37,18 +37,18 @@ const FoodDialog = ({
         } else {
             context.setState({...context.state, orders: [...context.state.orders, order]});
         }
+        localStorage.setItem('bucket', JSON.stringify(context.state.orders))
         setQuantity(1)
     }
 
     return (
         <>
             <Modal show={show} onHide={handleClose}
-                   aria-labelledby="contained-modal-title-vcenter"
-                   centered>
+            >
                 <Modal.Header className="p-0 overflow-hidden">
                     <img src={item.img} alt={item.name}/>
                 </Modal.Header>
-                <Modal.Title className="text-center mt-3">{item.name}</Modal.Title>
+                <Modal.Title className="text-center mt-1" style={{color: pizzaRed}}>{item.name}</Modal.Title>
                 <Modal.Body>
                     <ListGroup>
                         <ListGroup.Item>Category: {item.category}</ListGroup.Item>

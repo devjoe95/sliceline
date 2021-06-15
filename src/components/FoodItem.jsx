@@ -11,15 +11,15 @@ const FoodItem = ({item}) => {
     const handleShow = () => setShow(true);
     const {name, img, category, price} = item;
     return (
-        <Col md={6} className="mb-3">
+        <Col md={4} className="mb-3">
             <div className="card bg-dark text-white" onClick={() => {
                 handleShow()
             }}>
                 <img src={img} className="card-img" alt={name}/>
                 <div className="card-img-overlay">
-                    <h5 className="card-title">{name}</h5>
-                    <p className="card-text">{category}</p>
-                    <p className="card-text">{price.toLocaleString("en-US", {
+                    <h4 className="card-title">{name}</h4>
+                    <p className="card-text  m-0">{category}</p>
+                    <p className="card-text m-0">{price.toLocaleString("en-US", {
                         style: "currency",
                         currency: "EGP",
                     })}</p>
