@@ -1,0 +1,2 @@
+.food{transition:all .2s ease-in-out;cursor:pointer}.food:hover img{-webkit-filter:contrast(100%);filter:contrast(100%);box-shadow:5px 5px 10px 1px grey;margin-top:-5px}img{width:100%;object-fit:cover;height:150px;-webkit-filter:contrast(70%);filter:contrast(70%);transition:all .2s ease-in-out}
+/*# sourceMappingURL=main.5b850014.chunk.css.map */

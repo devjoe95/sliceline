@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/sliceline/static/css/main.5b850014.chunk.css",
+    "main.js": "/sliceline/static/js/main.88c1989c.chunk.js",
+    "main.js.map": "/sliceline/static/js/main.88c1989c.chunk.js.map",
+    "runtime-main.js": "/sliceline/static/js/runtime-main.8bb66e50.js",
+    "runtime-main.js.map": "/sliceline/static/js/runtime-main.8bb66e50.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/sliceline/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.5622887d.chunk.js": "/sliceline/static/js/2.5622887d.chunk.js",
+    "static/js/2.5622887d.chunk.js.map": "/sliceline/static/js/2.5622887d.chunk.js.map",
+    "static/js/3.d76307db.chunk.js": "/sliceline/static/js/3.d76307db.chunk.js",
+    "static/js/3.d76307db.chunk.js.map": "/sliceline/static/js/3.d76307db.chunk.js.map",
+    "index.html": "/sliceline/index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "/sliceline/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.5b850014.chunk.css.map": "/sliceline/static/css/main.5b850014.chunk.css.map",
+    "static/js/2.5622887d.chunk.js.LICENSE.txt": "/sliceline/static/js/2.5622887d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8bb66e50.js",
+    "static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.5622887d.chunk.js",
+    "static/css/main.5b850014.chunk.css",
+    "static/js/main.88c1989c.chunk.js"
+  ]
+}
