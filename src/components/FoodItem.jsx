@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import "../styles/FoodItem.css";
 import { Col } from "react-bootstrap";
 import FoodDialog from "./FoodDialog";
+import { pizzaRed } from "../styles/colors";
 
 const FoodItem = ({ item }) => {
   const [show, setShow] = useState(false);
@@ -21,14 +22,14 @@ const FoodItem = ({ item }) => {
       >
         <img src={img} className="card-img" alt={name} />
         <div className="card-img-overlay">
-          <h4 className="card-title">{name}</h4>
+          <h4 className="card-title font-weight-bolder my-0">{name}</h4>
           <p className="card-text  m-0">{category}</p>
-          <p className="card-text m-0">
+          <span className="card-text m-0 font-weight-bolder" style={{background:pizzaRed}}>
             {price.toLocaleString("en-US", {
               style: "currency",
               currency: "EGP",
             })}
-          </p>
+          </span>
         </div>
       </div>
       <FoodDialog show={show} handleClose={handleClose} item={item} />
