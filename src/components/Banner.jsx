@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const BannerStyled = styled.div`
   height: 300px;
-  background: url("sliceline/images/banner.jpg");
+  background: url("images/banner.jpg");
   background-position: center;
   background-size:cover;
   filter:contrast(80%);
