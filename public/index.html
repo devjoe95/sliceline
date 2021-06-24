@@ -46,27 +46,30 @@
     -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
-
     <!-- TODO: Add SDKs for Firebase products that you want to use
          https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
 
-    <script>
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      var firebaseConfig = {
-        apiKey: "AIzaSyDzqsnPAHT5oI--KcH2M_0BP6MWa0A2Oqc",
-        authDomain: "sliceline-7de51.firebaseapp.com",
-        projectId: "sliceline-7de51",
-        storageBucket: "sliceline-7de51.appspot.com",
-        messagingSenderId: "1015188426350",
-        appId: "1:1015188426350:web:4bbc156ecfe4e3749ca07f",
-        measurementId: "G-KJS9F83ZCC"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
-    </script>
+    
+   <script>
+     
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDzqsnPAHT5oI--KcH2M_0BP6MWa0A2Oqc",
+    authDomain: "sliceline-7de51.firebaseapp.com",
+    databaseURL: "https://sliceline-7de51-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "sliceline-7de51",
+    storageBucket: "sliceline-7de51.appspot.com",
+    messagingSenderId: "1015188426350",
+    appId: "1:1015188426350:web:4bbc156ecfe4e3749ca07f",
+    measurementId: "G-KJS9F83ZCC"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
   </body>
 </html>

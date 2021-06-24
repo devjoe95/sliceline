@@ -21,7 +21,7 @@ const FoodDialog = ({ item, show, handleClose }) => {
     count: quantity,
   };
 
-  function addToBucket() {
+  const addToBucket = () => {
     const selectedOrder = context.state.orders.find(
       (res) => res.name === order.name
     );
@@ -38,11 +38,11 @@ const FoodDialog = ({ item, show, handleClose }) => {
     }
     localStorage.setItem("bucket", JSON.stringify(context.state.orders));
     setQuantity(1);
-  }
+  };
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal size="sm" show={show} onHide={handleClose}>
         <Modal.Header className="p-0 overflow-hidden">
           <img src={item.img} alt={item.name} />
         </Modal.Header>
