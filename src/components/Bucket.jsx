@@ -27,7 +27,7 @@ const Bucket = () => {
         username: context.state.user.displayName,
         email: context.state.user.email,
         items: context.state.orders,
-        totalPrice,
+        totalPrice: totalPrice + totalPrice * tax,
       })
       .then(() => {
         context.setState({ ...context.state, orders: [] });
