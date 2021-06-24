@@ -17,13 +17,21 @@ const Bucket = () => {
       return 0;
     }
   }, [context.state.orders]);
+
   useEffect(() => {
-    document.title = `(${context.state.orders.length}) ${document.title}`;
+    const date = new Date();
+    if (date.getHours() > 18) {
+      setTax(16 / 100);
+    }
   }, [context.state.orders]);
   const orderHandler = () => {
     const order = database.ref("/orders").push();
+    const date = new Date();
     order
       .set({
+        time: `${date.getDay()}/${date.getMonth() + 1}/${date.getFullYear()} ${
+          date.getHours() === 0 ? "00" : date.getHours()
+        }:${date.getMinutes() === 0 ? "00" : date.getMinutes()}`,
         username: context.state.user.displayName,
         email: context.state.user.email,
         items: context.state.orders,
