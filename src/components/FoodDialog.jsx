@@ -15,6 +15,10 @@ const FoodDialog = ({ item, show, handleClose }) => {
   const context = useContext(AppContext);
   const [quantity, setQuantity] = useState(1);
 
+  useEffect(() => {
+    localStorage.setItem("bucket", JSON.stringify(context.state.orders));
+  }, [context.state]);
+  
   if (!item) return null;
   const order = {
     ...item,
@@ -36,7 +40,6 @@ const FoodDialog = ({ item, show, handleClose }) => {
         orders: [...context.state.orders, order],
       });
     }
-    localStorage.setItem("bucket", JSON.stringify(context.state.orders));
     setQuantity(1);
   };
 
